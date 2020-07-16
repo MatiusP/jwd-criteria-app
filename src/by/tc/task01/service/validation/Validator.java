@@ -9,11 +9,16 @@ public class Validator {
     private static boolean applianceTypeValidator(Criteria criteria) {
         String applianceType = criteria.getGroupSearchName();
 
-        if (!applianceType.isEmpty()) {
-            for (ApplianceType type : applianceTypes) {
-                if (type.toString().replace("_", "").equalsIgnoreCase(applianceType)) {
-                    return true;
-                }
+        if (applianceType.isEmpty()) {
+            return false;
+        }
+        if (applianceType == null) {
+            return false;
+        }
+
+        for (ApplianceType type : applianceTypes) {
+            if (type.toString().replace("_", "").equalsIgnoreCase(applianceType)) {
+                return true;
             }
         }
         return false;

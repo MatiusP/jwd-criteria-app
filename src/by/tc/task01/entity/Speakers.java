@@ -1,78 +1,56 @@
 package by.tc.task01.entity;
 
-public class Speakers implements Appliance{
-
+public class Speakers implements Appliance {
     private double powerConsumption;
     private double numberOfSpeakers;
     private String frequencyRange;
     private double cordLength;
 
-    public double getPowerConsumption() {
-        return powerConsumption;
+    private Speakers(Builder builder) {
+        this.powerConsumption = builder.powerConsumption;
+        this.numberOfSpeakers = builder.numberOfSpeakers;
+        this.frequencyRange = builder.frequencyRange;
+        this.cordLength = builder.cordLength;
     }
 
-    public void setPowerConsumption(double powerConsumption) {
-        this.powerConsumption = powerConsumption;
-    }
+    public static class Builder {
+        private double powerConsumption;
+        private double numberOfSpeakers;
+        private String frequencyRange;
+        private double cordLength;
 
-    public double getNumberOfSpeakers() {
-        return numberOfSpeakers;
-    }
+        public Builder setPowerConsumption(double powerConsumption) {
+            this.powerConsumption = powerConsumption;
+            return this;
+        }
 
-    public void setNumberOfSpeakers(double numberOfSpeakers) {
-        this.numberOfSpeakers = numberOfSpeakers;
-    }
+        public Builder setNumberOfSpeakers(double numberOfSpeakers) {
+            this.numberOfSpeakers = numberOfSpeakers;
+            return this;
+        }
 
-    public String getFrequencyRange() {
-        return frequencyRange;
-    }
+        public Builder setFrequencyRange(String frequencyRange) {
+            this.frequencyRange = frequencyRange;
+            return this;
+        }
 
-    public void setFrequencyRange(String frequencyRange) {
-        this.frequencyRange = frequencyRange;
-    }
+        public Builder setCordLength(double cordLength) {
+            this.cordLength = cordLength;
+            return this;
+        }
 
-    public double getCordLength() {
-        return cordLength;
-    }
-
-    public void setCordLength(double cordLength) {
-        this.cordLength = cordLength;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Speakers)) return false;
-
-        Speakers speakers = (Speakers) o;
-
-        if (Double.compare(speakers.powerConsumption, powerConsumption) != 0) return false;
-        if (Double.compare(speakers.numberOfSpeakers, numberOfSpeakers) != 0) return false;
-        if (Double.compare(speakers.cordLength, cordLength) != 0) return false;
-        return frequencyRange != null ? frequencyRange.equals(speakers.frequencyRange) : speakers.frequencyRange == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        temp = Double.doubleToLongBits(powerConsumption);
-        result = (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(numberOfSpeakers);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (frequencyRange != null ? frequencyRange.hashCode() : 0);
-        temp = Double.doubleToLongBits(cordLength);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        return result;
+        public Speakers buildSpeakers() {
+            return new Speakers(this);
+        }
     }
 
     @Override
     public String toString() {
-        return "Speakers{" +
+        return "Speakers: " +
                 "powerConsumption=" + powerConsumption +
                 ", numberOfSpeakers=" + numberOfSpeakers +
-                ", frequencyRange='" + frequencyRange + '\'' +
+                ", frequencyRange=" + frequencyRange +
                 ", cordLength=" + cordLength +
-                '}';
+                ';';
     }
 }

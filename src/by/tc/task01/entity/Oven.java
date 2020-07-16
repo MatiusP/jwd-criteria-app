@@ -1,6 +1,6 @@
 package by.tc.task01.entity;
 
-public class Oven implements Appliance{
+public class Oven implements Appliance {
     private double powerConsumption;
     private double weight;
     private double capacity;
@@ -8,97 +8,70 @@ public class Oven implements Appliance{
     private double height;
     private double width;
 
-    public double getPowerConsumption() {
-        return powerConsumption;
+    private Oven(Builder builder) {
+        this.powerConsumption = builder.powerConsumption;
+        this.weight = builder.weight;
+        this.capacity = builder.capacity;
+        this.depth = builder.depth;
+        this.height = builder.height;
+        this.width = builder.width;
     }
 
-    public void setPowerConsumption(double powerConsumption) {
-        this.powerConsumption = powerConsumption;
-    }
 
-    public double getWeight() {
-        return weight;
-    }
+    public static class Builder {
+        private double powerConsumption;
+        private double weight;
+        private double capacity;
+        private double depth;
+        private double height;
+        private double width;
 
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
+        public Builder setPowerConsumption(double powerConsumption) {
+            this.powerConsumption = powerConsumption;
+            return this;
+        }
 
-    public double getCapacity() {
-        return capacity;
-    }
+        public Builder setWeight(double weight) {
+            this.weight = weight;
+            return this;
+        }
 
-    public void setCapacity(double capacity) {
-        this.capacity = capacity;
-    }
+        public Builder setCapacity(double capacity) {
+            this.capacity = capacity;
+            return this;
+        }
 
-    public double getDepth() {
-        return depth;
-    }
+        public Builder setDepth(double depth) {
+            this.depth = depth;
+            return this;
+        }
 
-    public void setDepth(double depth) {
-        this.depth = depth;
-    }
+        public Builder setHeight(double height) {
+            this.height = height;
+            return this;
+        }
 
-    public double getHeight() {
-        return height;
-    }
+        public Builder setWidth(double width) {
+            this.width = width;
+            return this;
+        }
 
-    public void setHeight(double height) {
-        this.height = height;
-    }
-
-    public double getWidth() {
-        return width;
-    }
-
-    public void setWidth(double width) {
-        this.width = width;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Oven)) return false;
-
-        Oven oven = (Oven) o;
-
-        if (Double.compare(oven.powerConsumption, powerConsumption) != 0) return false;
-        if (Double.compare(oven.weight, weight) != 0) return false;
-        if (Double.compare(oven.capacity, capacity) != 0) return false;
-        if (Double.compare(oven.depth, depth) != 0) return false;
-        if (Double.compare(oven.height, height) != 0) return false;
-        return Double.compare(oven.width, width) == 0;
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        temp = Double.doubleToLongBits(powerConsumption);
-        result = (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(weight);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(capacity);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(depth);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(height);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(width);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        return result;
+        public Oven buildOven() {
+            return new Oven(this);
+        }
     }
 
     @Override
     public String toString() {
-        return "Oven{" +
+        return "Oven: " +
                 "powerConsumption=" + powerConsumption +
                 ", weight=" + weight +
                 ", capacity=" + capacity +
                 ", depth=" + depth +
                 ", height=" + height +
                 ", width=" + width +
-                '}';
+                ';';
     }
+
+
 }

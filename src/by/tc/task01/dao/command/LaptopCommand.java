@@ -9,14 +9,13 @@ public class LaptopCommand implements Command {
     @Override
     public Appliance execute(Map<String, String> applianceCriteria) {
 
-        Laptop laptop = new Laptop();
-        laptop.setBatteryCapacity(Double.parseDouble(applianceCriteria.get("BATTERY_CAPACITY")));
-        laptop.setOperationSystem(applianceCriteria.get("OS"));
-        laptop.setMemoryRom(Double.parseDouble(applianceCriteria.get("MEMORY_ROM")));
-        laptop.setSystemMemory(Double.parseDouble(applianceCriteria.get("SYSTEM_MEMORY")));
-        laptop.setCpu(Double.parseDouble(applianceCriteria.get("CPU")));
-        laptop.setDisplayInches(Double.parseDouble(applianceCriteria.get("DISPLAY_INCHES")));
-
-        return laptop;
+        return new Laptop.Builder().
+                setBatteryCapacity(Double.parseDouble(applianceCriteria.get("BATTERY_CAPACITY")))
+                .setOperationSystem(applianceCriteria.get("OS"))
+                .setMemoryRom(Double.parseDouble(applianceCriteria.get("MEMORY_ROM")))
+                .setSystemMemory(Double.parseDouble(applianceCriteria.get("SYSTEM_MEMORY")))
+                .setCpu(Double.parseDouble(applianceCriteria.get("CPU")))
+                .setDisplayInches(Double.parseDouble(applianceCriteria.get("DISPLAY_INCHES")))
+                .buildLaptop();
     }
 }

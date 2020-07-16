@@ -8,16 +8,13 @@ import java.util.Map;
 public class VacuumCleanerCommand implements Command {
     @Override
     public Appliance execute(Map<String, String> applianceCriteria) {
-
-        VacuumCleaner vacuumCleaner = new VacuumCleaner();
-
-        vacuumCleaner.setPowerConsumption(Double.parseDouble(applianceCriteria.get("POWER_CONSUMPTION")));
-        vacuumCleaner.setFilterType(applianceCriteria.get("FILTER_TYPE"));
-        vacuumCleaner.setBagType(applianceCriteria.get("BAG_TYPE"));
-        vacuumCleaner.setWandType(applianceCriteria.get("WAND_TYPE"));
-        vacuumCleaner.setMotorSpeedRegulation(Double.parseDouble(applianceCriteria.get("MOTOR_SPEED_REGULATION")));
-        vacuumCleaner.setCleaningWidth(Double.parseDouble(applianceCriteria.get("CLEANING_WIDTH")));
-
-        return vacuumCleaner;
+        return new VacuumCleaner.Builder()
+                .setPowerConsumption(Double.parseDouble(applianceCriteria.get("POWER_CONSUMPTION")))
+                .setFilterType(applianceCriteria.get("FILTER_TYPE"))
+                .setBagType(applianceCriteria.get("BAG_TYPE"))
+                .setWandType(applianceCriteria.get("WAND_TYPE"))
+                .setMotorSpeedRegulation(Double.parseDouble(applianceCriteria.get("MOTOR_SPEED_REGULATION")))
+                .setCleaningWidth(Double.parseDouble(applianceCriteria.get("CLEANING_WIDTH")))
+                .buildVacuumCleaner();
     }
 }

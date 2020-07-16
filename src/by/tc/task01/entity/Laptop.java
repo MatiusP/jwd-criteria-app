@@ -8,96 +8,68 @@ public class Laptop implements Appliance {
     private double cpu;
     private double displayInches;
 
-    public double getBatteryCapacity() {
-        return batteryCapacity;
+    private Laptop(Builder builder) {
+        this.batteryCapacity = builder.batteryCapacity;
+        this.operationSystem = builder.operationSystem;
+        this.memoryRom = builder.memoryRom;
+        this.systemMemory = builder.systemMemory;
+        this.cpu = builder.cpu;
+        this.displayInches = builder.displayInches;
     }
 
-    public void setBatteryCapacity(double batteryCapacity) {
-        this.batteryCapacity = batteryCapacity;
-    }
 
-    public String getOperationSystem() {
-        return operationSystem;
-    }
+    public static class Builder {
+        private double batteryCapacity;
+        private String operationSystem;
+        private double memoryRom;
+        private double systemMemory;
+        private double cpu;
+        private double displayInches;
 
-    public void setOperationSystem(String operationSystem) {
-        this.operationSystem = operationSystem;
-    }
+        public Builder setBatteryCapacity(double batteryCapacity) {
+            this.batteryCapacity = batteryCapacity;
+            return this;
+        }
 
-    public double getMemoryRom() {
-        return memoryRom;
-    }
+        public Builder setOperationSystem(String operationSystem) {
+            this.operationSystem = operationSystem;
+            return this;
+        }
 
-    public void setMemoryRom(double memoryRom) {
-        this.memoryRom = memoryRom;
-    }
+        public Builder setMemoryRom(double memoryRom) {
+            this.memoryRom = memoryRom;
+            return this;
+        }
 
-    public double getSystemMemory() {
-        return systemMemory;
-    }
+        public Builder setSystemMemory(double systemMemory) {
+            this.systemMemory = systemMemory;
+            return this;
+        }
 
-    public void setSystemMemory(double systemMemory) {
-        this.systemMemory = systemMemory;
-    }
+        public Builder setCpu(double cpu) {
+            this.cpu = cpu;
+            return this;
+        }
 
-    public double getCpu() {
-        return cpu;
-    }
+        public Builder setDisplayInches(double displayInches) {
+            this.displayInches = displayInches;
+            return this;
+        }
 
-    public void setCpu(double cpu) {
-        this.cpu = cpu;
-    }
-
-    public double getDisplayInches() {
-        return displayInches;
-    }
-
-    public void setDisplayInches(double displayInches) {
-        this.displayInches = displayInches;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Laptop)) return false;
-
-        Laptop laptop = (Laptop) o;
-
-        if (Double.compare(laptop.batteryCapacity, batteryCapacity) != 0) return false;
-        if (Double.compare(laptop.memoryRom, memoryRom) != 0) return false;
-        if (Double.compare(laptop.systemMemory, systemMemory) != 0) return false;
-        if (Double.compare(laptop.cpu, cpu) != 0) return false;
-        if (Double.compare(laptop.displayInches, displayInches) != 0) return false;
-        return operationSystem != null ? operationSystem.equals(laptop.operationSystem) : laptop.operationSystem == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        temp = Double.doubleToLongBits(batteryCapacity);
-        result = (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (operationSystem != null ? operationSystem.hashCode() : 0);
-        temp = Double.doubleToLongBits(memoryRom);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(systemMemory);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(cpu);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(displayInches);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        return result;
+        public Laptop buildLaptop() {
+            return new Laptop(this);
+        }
     }
 
     @Override
     public String toString() {
-        return "Laptop{" +
+        return "Laptop: " +
                 "batteryCapacity=" + batteryCapacity +
-                ", operationSystem='" + operationSystem + '\'' +
+                ", operationSystem=" + operationSystem +
                 ", memoryRom=" + memoryRom +
                 ", systemMemory=" + systemMemory +
                 ", cpu=" + cpu +
                 ", displayInches=" + displayInches +
-                '}';
+                ';';
     }
 }

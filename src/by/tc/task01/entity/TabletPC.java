@@ -1,91 +1,65 @@
 package by.tc.task01.entity;
 
-public class TabletPC implements Appliance{
-
+public class TabletPC implements Appliance {
     private double batteryCapacity;
     private double displayInches;
     private double memoryRom;
     private double flashMemoryCapacity;
     private String color;
 
-    public double getBatteryCapacity() {
-        return batteryCapacity;
+    private TabletPC(Builder builder) {
+        this.batteryCapacity = builder.batteryCapacity;
+        this.displayInches = builder.displayInches;
+        this.memoryRom = builder.memoryRom;
+        this.flashMemoryCapacity = builder.flashMemoryCapacity;
+        this.color = builder.color;
     }
 
-    public void setBatteryCapacity(double batteryCapacity) {
-        this.batteryCapacity = batteryCapacity;
-    }
+    public static class Builder {
+        private double batteryCapacity;
+        private double displayInches;
+        private double memoryRom;
+        private double flashMemoryCapacity;
+        private String color;
 
-    public double getDisplayInches() {
-        return displayInches;
-    }
+        public Builder setBatteryCapacity(double batteryCapacity) {
+            this.batteryCapacity = batteryCapacity;
+            return this;
+        }
 
-    public void setDisplayInches(double displayInches) {
-        this.displayInches = displayInches;
-    }
+        public Builder setDisplayInches(double displayInches) {
+            this.displayInches = displayInches;
+            return this;
+        }
 
-    public double getMemoryRom() {
-        return memoryRom;
-    }
+        public Builder setMemoryRom(double memoryRom) {
+            this.memoryRom = memoryRom;
+            return this;
+        }
 
-    public void setMemoryRom(double memoryRom) {
-        this.memoryRom = memoryRom;
-    }
+        public Builder setFlashMemoryCapacity(double flashMemoryCapacity) {
+            this.flashMemoryCapacity = flashMemoryCapacity;
+            return this;
+        }
 
-    public double getFlashMemoryCapacity() {
-        return flashMemoryCapacity;
-    }
+        public Builder setColor(String color) {
+            this.color = color;
+            return this;
+        }
 
-    public void setFlashMemoryCapacity(double flashMemoryCapacity) {
-        this.flashMemoryCapacity = flashMemoryCapacity;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof TabletPC)) return false;
-
-        TabletPC tabletPC = (TabletPC) o;
-
-        if (Double.compare(tabletPC.batteryCapacity, batteryCapacity) != 0) return false;
-        if (Double.compare(tabletPC.displayInches, displayInches) != 0) return false;
-        if (Double.compare(tabletPC.memoryRom, memoryRom) != 0) return false;
-        if (Double.compare(tabletPC.flashMemoryCapacity, flashMemoryCapacity) != 0) return false;
-        return color != null ? color.equals(tabletPC.color) : tabletPC.color == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        temp = Double.doubleToLongBits(batteryCapacity);
-        result = (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(displayInches);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(memoryRom);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(flashMemoryCapacity);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (color != null ? color.hashCode() : 0);
-        return result;
+        public TabletPC buildTabletPC() {
+            return new TabletPC(this);
+        }
     }
 
     @Override
     public String toString() {
-        return "TabletPC{" +
+        return "TabletPC: " +
                 "batteryCapacity=" + batteryCapacity +
                 ", displayInches=" + displayInches +
                 ", memoryRom=" + memoryRom +
                 ", flashMemoryCapacity=" + flashMemoryCapacity +
-                ", color='" + color + '\'' +
-                '}';
+                ", color=" + color +
+                ';';
     }
 }

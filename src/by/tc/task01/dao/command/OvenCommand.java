@@ -8,15 +8,13 @@ import java.util.Map;
 public class OvenCommand implements Command {
     @Override
     public Appliance execute(Map<String, String> applianceCriteria) {
-        Oven oven = new Oven();
-
-        oven.setPowerConsumption(Double.parseDouble(applianceCriteria.get("POWER_CONSUMPTION")));
-        oven.setWeight(Double.parseDouble(applianceCriteria.get("WEIGHT")));
-        oven.setCapacity(Double.parseDouble(applianceCriteria.get("CAPACITY")));
-        oven.setDepth(Double.parseDouble(applianceCriteria.get("DEPTH")));
-        oven.setHeight(Double.parseDouble(applianceCriteria.get("HEIGHT")));
-        oven.setWidth(Double.parseDouble(applianceCriteria.get("WIDTH")));
-
-        return oven;
+        return new Oven.Builder()
+                .setPowerConsumption(Double.parseDouble(applianceCriteria.get("POWER_CONSUMPTION")))
+                .setWeight(Double.parseDouble(applianceCriteria.get("WEIGHT")))
+                .setCapacity(Double.parseDouble(applianceCriteria.get("CAPACITY")))
+                .setDepth(Double.parseDouble(applianceCriteria.get("DEPTH")))
+                .setHeight(Double.parseDouble(applianceCriteria.get("HEIGHT")))
+                .setWidth(Double.parseDouble(applianceCriteria.get("WIDTH")))
+                .buildOven();
     }
 }
